@@ -547,7 +547,7 @@ metadata:
 spec:
   restartPolicy: Always
   containers:
-  - name: mybox
+  - name: mybox2
     image: busybox
     resources:
       requests:
