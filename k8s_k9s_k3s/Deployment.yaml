@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-example
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: httpd
+      env: prod
+  template:
+    metadata:
+      labels:
+        app: httpd
+        env: prod
+    spec:
+      containers:
+      - name: httpd2
+        image: httpd
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 80
+#as
+#asas

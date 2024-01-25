@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-example
+data:
+  program: DevOps
+  instructor: kaizen
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  nginx.conf: |
+    events {}
+    
+    http {
+      server {
+        listen 80;
+        location / {
+          set $program 'DevOps';
+          set $instructor 'kaizen';          
+          return 200 "$program $instructor enthusiast";
+        }
+      }
+    }

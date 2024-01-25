@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mybox1
+spec:
+  restartPolicy: Always
+  containers:
+  - name: mybox1
+    image: busybox
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 250m
+        memory: 256Mi
+    command:
+    - sleep
+    - "3600"
+    env:
+    - name: instructor
+      valueFrom:
+        configMapKeyRef:
+          name: cm-example
+          key: instructor
+    - name: program
+      valueFrom:
+        configMapKeyRef:
+          name: cm-example
+          key: program

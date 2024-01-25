@@ -1,0 +1,30 @@
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  name: nginx-pod
+#spec:
+#  containers:
+#    - name: nginx-container
+#      image: nginx
+#      resources:
+#        limits:
+#          cpu: "500m"
+#          memory: "128Mi"
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    name: myapp
+    type: front-end
+spec:
+  containers:
+  - name: mynginx
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+    - containerPort: 80
