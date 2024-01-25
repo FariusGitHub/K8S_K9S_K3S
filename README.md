@@ -571,3 +571,41 @@ spec:
             name: secrets
             key: password
 ``` 
+
+
+## SUMMARY <br>
+I would like to wrap up this introduction with this K9S exercises.<br>
+Visualization to show these environmental could be done as follow.<br>
+
+```txt
+kubectl apply -f test.yaml
+kubectl apply -f 5a.yaml
+```
+
+From K9S, see the populated Pods and configmap. The reason I have to<br>
+I need to replicate cm-example ConfigMap data into nginx-config <br>
+ConfigMap nginx.conf data as they are in key-pair vs string format. <br>
+
+![](/images/04-image13.png)<br>
+  Figure 13: Reviewing Replicated Environmet Variable from a Browser<br><br>
+
+![](/images/04-image14.png)<br>
+  Figure 14: http://localhost:8001/api/v1/namespaces/default/services/nginx:/proxy/#!/<br><br>  
+
+One of possible project that can utilize kubernetes knowledge would be<br>
+in Raspberry Pi or Edge Computing devices to orchestrate multiple drones.<br>
+
+| Fire works Orchestrator | Apache Mesos | Docker Swarm | Apache Airflow | Ansible | Chef | Kubernetes |
+|-------------------|--------------|--------------|----------------|---------|------|------------|
+| Scalability       | High         | Medium       | Low            | Low     | Low  | High       |
+| Fault Tolerance   | High         | Medium       | Low            | Low     | Low  | High       |
+| Resource Management | High       | Medium       | Low            | Low     | Low  | High       |
+| Container Orchestration | Yes    | Yes          | No             | No      | No   | Yes        |
+| Task Scheduling   | Yes          | Yes          | No             | No      | No   | Yes        |
+| Automation        | No           | No           | Yes            | Yes     | Yes  | Yes        |
+| Configuration Management | No    | No           | No             | Yes     | Yes  | Yes        |
+| Monitoring        | Yes          | Yes          | No             | No      | No   | Yes        |
+| Community Support | High         | High         | Medium         | High    | High | High       |
+| Learning Curve    | Medium       | Low          | High           | Low     | Low  | High       |
+
+![](/images/04-image15.gif)<br>
