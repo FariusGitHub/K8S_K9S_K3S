@@ -477,6 +477,8 @@ we can got the browser localhost:8080 to see a test page like below<br>
 ![](/images/04-image12.png)<br>
   Figure 12: Default message from the config file of httpd in /etc/httpd/conf/httpd.conf<br><br>
 
+The other approach to send a quick message to browser would like this [one](https://gist.github.com/sdenel/1bd2c8b5975393ababbcff9b57784e82).
+
 ### Exercise 5
 This section is just to demonstrate the reusability.<br>
 Look at below ConfigMaps.yaml file for example.
