@@ -582,7 +582,7 @@ kubectl apply -f test.yaml
 kubectl apply -f 5a.yaml
 ```
 
-From K9S, see the populated Pods and configmap. The reason I have to<br>
+From K9S, see the populated Pods and configmap. The reason that<br>
 I need to replicate cm-example ConfigMap data into nginx-config <br>
 ConfigMap nginx.conf data as they are in key-pair vs string format. <br>
 
