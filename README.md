@@ -491,17 +491,17 @@ data:
   Program: DevOps
   Instructor: Usman
 ```
-By having above, we can reuse the Instructor variable like below
+Now we can use Instructor, Program variable like below.
 
 ```txt
 apiVersion: v1
 kind: Pod
 metadata:
-  name: mybox
+  name: mybox1
 spec:
   restartPolicy: Always
   containers:
-  - name: mybox
+  - name: mybox1
     image: busybox
     resources:
       requests:
@@ -519,6 +519,11 @@ spec:
         configMapKeyRef:
           name: cm-example
           key: Instructor
+    - name: Program
+      valueFrom:
+        configMapKeyRef:
+          name: cm-example
+          key: Program
 ```
 
 ### Exercise 6
