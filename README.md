@@ -608,22 +608,26 @@ wcd
 / # cat /etc/secret/password
 thisismypassword
 ```
-<br><br>
+<br>
+
+I hope this introduction is not too heavy. Let's see a lot more [here](https://github.com/FariusGitHub/kubernetes).<br>
+
+<br>
 
 One of possible project that can utilize kubernetes knowledge would be<br>
-in Raspberry Pi or Edge Computing devices to orchestrate multiple drones.<br>
+in Raspberry Pi or Edge Computing devices to make night light formation.<br>
 
-|  | Apache Mesos | Docker Swarm | Apache Airflow | Ansible | Chef | Kubernetes |
-|--|--------------|--------------|----------------|---------|------|------------|
-| Scalability       | High         | Medium       | Low            | Low     | Low  | High       |
-| Fault Tolerance   | High         | Medium       | Low            | Low     | Low  | High       |
-| Resource Management | High       | Medium       | Low            | Low     | Low  | High       |
-| Container Orchestration | Yes    | Yes          | No             | No      | No   | Yes        |
-| Task Scheduling   | Yes          | Yes          | No             | No      | No   | Yes        |
-| Automation        | No           | No           | Yes            | Yes     | Yes  | Yes        |
-| Configuration Management | No    | No           | No             | Yes     | Yes  | Yes        |
-| Monitoring        | Yes          | Yes          | No             | No      | No   | Yes        |
-| Community Support | High         | High         | Medium         | High    | High | High       |
-| Learning Curve    | Medium       | Low          | High           | Low     | Low  | High       |
+| common features         | Apache Mesos | Docker Swarm | Apache Airflow | Ansible | Chef | Kubernetes |
+|-------------------------|--------------|--------------|----------------|---------|------|------------|
+| Scalability             | High         | Medium       | Low            | Low     | Low  | High       |
+| Fault Tolerance         | High         | Medium       | Low            | Low     | Low  | High       |
+| Resource Management     | High         | Medium       | Low            | Low     | Low  | High       |
+| Container Orchestration | Yes          | Yes          | No             | No      | No   | Yes        |
+| Task Scheduling         | Yes          | Yes          | No             | No      | No   | Yes        |
+| Automation              | No           | No           | Yes            | Yes     | Yes  | Yes        |
+| Configuration Management| No           | No           | No             | Yes     | Yes  | Yes        |
+| Monitoring              | Yes          | Yes          | No             | No      | No   | Yes        |
+| Community Support       | High         | High         | Medium         | High    | High | High       |
+| Learning Curve          | Medium       | Low          | High           | Low     | Low  | High       |
 
 ![](/images/04-image15.gif)<br>
