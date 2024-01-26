@@ -209,7 +209,8 @@ kubectl delete -f xyz.yaml # --> to delete a deployment
 A deployment may consist of multiple pods, depends on how many replicas<br>
 mentioned in yaml file<br>
 
-### Exercise 1:
+### YAML FILE 
+The common use of Kubernetes yml file is to create pod (but not always).<br>
 We will create a Pod.yaml with an Nginx image, with the following setting
  - the resources limits to 500m (50%)
  - for cpu and 128 Mi for memory.
@@ -314,7 +315,7 @@ NAME    READY   STATUS    RESTARTS   AGE   IP           NODE             NOMINAT
 myapp   1/1     Running   0          16s   10.1.0.175   docker-desktop   <none>           <none>
 devops@msi:~/DevOps/K9s-lab$ 
 ```
-### Exercise 2:
+### REPLICAS
 Below is an example of another deployment from Replicaset.yaml.<br>
 
 ```txt
@@ -377,7 +378,7 @@ kubectl apply -f Replicaset.yaml
 ![](/images/04-image10.png)<br>
   Figure 10: Three pods are generated as in yaml it mentioned about 3 replicas<br><br>
 
-### Exercise 3
+### REVISION HISTORY
 We will introduce revisionHistoryLimit, for example we set into 3 below
 ```txt
 revisionHistoryLimit: 3
@@ -448,7 +449,7 @@ devops@msi:~/DevOps/K9s-lab$ kubectl rollout undo deployment/deploy-example --to
 deployment.apps/deploy-example rolled back
 ```  
 
-### Exercise 4
+### PORT FORWARDING
 At this exercise we would not deploy any new pod from service.yaml,<br>
 but instead adding access to web page from the last pods.
 
@@ -477,9 +478,9 @@ we can got the browser localhost:8080 to see a test page like below<br>
 ![](/images/04-image12.png)<br>
   Figure 12: Default message from the config file of httpd in /etc/httpd/conf/httpd.conf<br><br>
 
-The other approach to send a quick message to browser would like this [one](https://gist.github.com/sdenel/1bd2c8b5975393ababbcff9b57784e82).
 
-### Exercise 5
+
+### CONFIGMAP
 This section is just to demonstrate the reusability.<br>
 Look at below ConfigMaps.yaml file for example.
 ```txt
@@ -491,17 +492,17 @@ data:
   Program: DevOps
   Instructor: Usman
 ```
-Now we can use Instructor, Program variable like below.
+By having above, we can reuse the Instructor variable like below
 
 ```txt
 apiVersion: v1
 kind: Pod
 metadata:
-  name: mybox1
+  name: mybox
 spec:
   restartPolicy: Always
   containers:
-  - name: mybox1
+  - name: mybox
     image: busybox
     resources:
       requests:
@@ -519,14 +520,27 @@ spec:
         configMapKeyRef:
           name: cm-example
           key: Instructor
-    - name: Program
-      valueFrom:
-        configMapKeyRef:
-          name: cm-example
-          key: Program
 ```
 
-### Exercise 6
+Visualization to show these environmental could be done as follow.<br>
+
+```txt
+kubectl apply -f test.yaml
+kubectl apply -f 5a.yaml
+```
+
+From K9S, see the populated Pods and configmap. The reason I have to<br>
+I need to replicate cm-example ConfigMap data into nginx-config <br>
+ConfigMap nginx.conf data as they are in key-pair vs string format. <br>
+
+![](/images/04-image13.png)<br>
+  Figure 13: Reviewing Replicated Environmet Variable from a Browser<br><br>
+
+![](/images/04-image14.png)<br>
+  Figure 14: http://localhost:8001/api/v1/namespaces/default/services/nginx:/proxy/#!/<br><br>  
+
+
+### SECRETS
 Similar to last exercise, let's look at secret.yaml file below.
 ```txt
 apiVersion: v1
@@ -547,7 +561,7 @@ metadata:
 spec:
   restartPolicy: Always
   containers:
-  - name: mybox2
+  - name: mybox
     image: busybox
     resources:
       requests:
@@ -574,29 +588,33 @@ spec:
 
 
 ## SUMMARY <br>
-I would like to wrap up this introduction with this K9S exercises.<br>
-Visualization to show these environmental could be done as follow.<br>
+Storing Secrets values is an enhanced way compared to ConfigMap values.<br>
+Take a look of volumeMounts and volumes where they hold crucial roles.<br>
+![](/images/04-image15.png)<br>
+
+Look at how to access ConfigMap values inside the container and compare<br>
+them to the way how the secrets (username and password) can be accessed!<br>
 
 ```txt
-kubectl apply -f test.yaml
-kubectl apply -f 5a.yaml
+devops@msi:~/DevOps/K9s-lab$ kubectl exec -it mybox1 -- /bin/sh
+/ # cat /etc/config/program
+DevOps
+/ # cat /etc/config/instructor
+usman
+/ # exit
+devops@msi:~/DevOps/K9s-lab$ kubectl exec -it mybox2 -- /bin/sh
+/ # cat /etc/secret/username
+wcd
+/ # cat /etc/secret/password
+thisismypassword
 ```
-
-From K9S, see the populated Pods and configmap. The reason that<br>
-I need to replicate cm-example ConfigMap data into nginx-config <br>
-ConfigMap nginx.conf data as they are in key-pair vs string format. <br>
-
-![](/images/04-image13.png)<br>
-  Figure 13: Reviewing Replicated Environmet Variable from a Browser<br><br>
-
-![](/images/04-image14.png)<br>
-  Figure 14: http://localhost:8001/api/v1/namespaces/default/services/nginx:/proxy/#!/<br><br>  
+<br><br>
 
 One of possible project that can utilize kubernetes knowledge would be<br>
 in Raspberry Pi or Edge Computing devices to orchestrate multiple drones.<br>
 
-| Fire works Orchestrator | Apache Mesos | Docker Swarm | Apache Airflow | Ansible | Chef | Kubernetes |
-|-------------------|--------------|--------------|----------------|---------|------|------------|
+|  | Apache Mesos | Docker Swarm | Apache Airflow | Ansible | Chef | Kubernetes |
+|--|--------------|--------------|----------------|---------|------|------------|
 | Scalability       | High         | Medium       | Low            | Low     | Low  | High       |
 | Fault Tolerance   | High         | Medium       | Low            | Low     | Low  | High       |
 | Resource Management | High       | Medium       | Low            | Low     | Low  | High       |
