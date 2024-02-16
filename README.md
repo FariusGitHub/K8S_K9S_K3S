@@ -115,7 +115,7 @@ developers and system administrators.<br><br>
 
 ```txt
 multipass launch --name master -c 2 -d 4G -m 2G 20.04
-multipass launch --name master -c 1 -d 4G -m 2G 20.04
+multipass launch --name worker -c 1 -d 4G -m 2G 20.04
 ```
 
 When the instances were ready, you probably see something like below
